@@ -1,0 +1,85 @@
+/* Basic Reset & Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+/* Screen Management */
+.screen {
+    display: none; /* Hide all screens by default */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.screen.active {
+    display: block; /* Only show the active screen */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography & Inputs */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #e94560;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #a2a2bd;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #16213e;
+    color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    margin: 5px;
+}
+
+.primary-btn { background-color: #0f3460; color: white; }
+.primary-btn:hover { background-color: #1a5296; }
+
+.secondary-btn { background-color: #4a4e69; color: white; }
+.secondary-btn:hover { background-color: #61668c; }
+
+.success-btn { background-color: #4caf50; color: white; }
+.danger-btn { background-color: #f44336; color: white; }
+
+.hidden { display: none !important; }

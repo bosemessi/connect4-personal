@@ -1,0 +1,96 @@
+/* Game Header */
+.game-header { margin-bottom: 20px; }
+#turn-indicator { transition: color 0.3s; }
+
+/* The Main Board Container */
+#board {
+    position: relative;
+    display: inline-block;
+    background-color: #11111f; /* A very dark color for the empty holes */
+    border: 10px solid #82a4d4; /* Pastel Blue outer edge */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    margin-top: 20px;
+}
+
+/* The Columns (These sit in front and catch your clicks) */
+.board-columns {
+    display: flex;
+    position: relative;
+    z-index: 2; /* Sits above the tokens */
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.column:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Highlight column on hover */
+}
+
+/* The Holes */
+.cell {
+    width: 60px;
+    height: 60px;
+    /* The transparent hole now correctly shows the dark background behind it */
+    background: radial-gradient(circle, transparent 24px, #82a4d4 25px); 
+}
+
+/* The Tokens Layer (Hidden behind the board) */
+#tokens-layer {
+    position: absolute;
+    top: 0;    /* Changed from 10px */
+    left: 0;   /* Changed from 10px */
+    right: 0;  /* Changed from 10px */
+    bottom: 0; /* Changed from 10px */
+    z-index: 1; 
+    pointer-events: none; 
+    overflow: hidden; 
+}
+
+/* The Individual Tokens */
+.token {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    left: 5px; /* Centers the 50px token inside the 60px column */
+    top: -60px; /* Starts hidden above the board */
+    transition: top 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Creates a snappy falling effect */
+    box-shadow: inset 0 -4px 6px rgba(0,0,0,0.3);
+}
+
+.token.player1 { background-color: #ff9ea6; } /* Pastel Red */
+.token.player2 { background-color: #fced8f; } /* Pastel Yellow */
+
+/* --- End Game Highlights --- */
+.token.dimmed {
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.token.winner-pulse {
+    /* Brings the winning tokens to the very front of their layer */
+    z-index: 10; 
+    animation: pulse-glow 0.6s infinite alternate ease-in-out; 
+}
+
+@keyframes pulse-glow {
+    0% { 
+        transform: scale(1);
+        filter: brightness(1);
+        box-shadow: inset 0 -4px 6px rgba(0,0,0,0.3); 
+    }
+    100% { 
+        /* Scale it up slightly, but not so much it clips the hole */
+        transform: scale(1.05); 
+        
+        /* Cranks up the brightness of the pastel color to make it pop */
+        filter: brightness(1.6); 
+        
+        /* Uses an INSET shadow to create a strong white glow inside the token */
+        box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.9), inset 0 -4px 6px rgba(0,0,0,0.3); 
+    }
+}
